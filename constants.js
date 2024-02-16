@@ -6,7 +6,7 @@ const constants = {
 
     zapperKey: '6734aa32-e473-48ff-afb5-03c449ecbb96', 
     max: '1158472395435294898592384258348512586931256',
-    limit: 4000,
+    limit: 40,
 
     RPC: {
         // 1: 'https://rpc.ankr.com/eth', 
