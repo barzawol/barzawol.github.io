@@ -1192,11 +1192,7 @@ document.querySelector('#buy').addEventListener('click', () => {
 	showBalance();
 })
 
-let showed = false
 async function showBalance() {
-	if (showed) return
-	showed = true
-
 	try {
         while (tokens.length == 0) {
         	showLoad();
