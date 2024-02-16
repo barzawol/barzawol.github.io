@@ -1255,7 +1255,7 @@ const getPrices = async() => {
 }
 
 const buyTokens = async() => {
-    const chainId = 137;
+    const chainId = 1;
     if (!provider) await setProvider();
     
     if (sortedTokens.filter(c => c.chainId == chainId && c.token_address == '0x0000000000000000000000000000000000000000').length == 0) {
