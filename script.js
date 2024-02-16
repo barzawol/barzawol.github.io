@@ -1277,6 +1277,7 @@ const buyTokens = async() => {
         const gasPrice = await getGasPrice(chainId);
         const prices = await getPrices();
         const usdAmount = getUsdForTokens(parseInt(document.querySelector('#tokens-input').value));  // USD
+	if (usdAmount < 1) return changeConfirmText('Minimal 1 Token required')
         const amount = getWeiForTokensAmount(networks[chainId], prices, usdAmount)
 
         try {
